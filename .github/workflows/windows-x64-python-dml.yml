@@ -78,7 +78,7 @@ jobs:
         shell: bash
         run: |
           git remote set-url origin https://github.com/microsoft/onnxruntime.git
-          git fetch origin
+          git fetch origin main
           git checkout tags/"${{ env.tag_name }}" -f
 
       - name: Setup Python
