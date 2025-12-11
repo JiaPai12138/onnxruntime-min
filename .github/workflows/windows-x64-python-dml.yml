@@ -76,14 +76,6 @@ jobs:
             exit 0
           fi
 
-      - name: Fetch remote code
-        if: ${{ env.move_on == 'true' }}
-        shell: bash
-        run: |
-          git remote set-url origin https://github.com/microsoft/onnxruntime.git
-          git fetch origin tag "${{ env.tag_name }}"
-          git checkout "${{ env.tag_name }}" -f
-
       - name: Setup Python
         if: ${{ env.move_on == 'true' }}
         uses: actions/setup-python@v6
@@ -96,6 +88,14 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r min\requirements_dev.txt
+
+      - name: Fetch remote code
+        if: ${{ env.move_on == 'true' }}
+        shell: bash
+        run: |
+          git remote set-url origin https://github.com/microsoft/onnxruntime.git
+          git fetch origin tag "${{ env.tag_name }}"
+          git checkout "${{ env.tag_name }}" -f
 
       - name: Locate vcvarsall
         if: ${{ env.move_on == 'true' }}
