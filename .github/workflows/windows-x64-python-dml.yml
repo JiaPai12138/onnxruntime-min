@@ -115,6 +115,7 @@ jobs:
             --parallel `
             --cmake_generator "Visual Studio 17 2022" `
             --msbuild_extra_options "IncludeMobileTargets=false" `
+            --msbuild_extra_options "/v:detailed" `
             --build_shared_lib `
             --build_wheel `
             --use_cache `
@@ -123,7 +124,8 @@ jobs:
             --disable_contrib_ops `
             --disable_ml_ops `
             --use_dml `
-            --cmake_extra_defines onnxruntime_USE_KLEIDIAI=OFF
+            --cmake_extra_defines onnxruntime_USE_KLEIDIAI=OFF `
+            --cmake_extra_defines CMAKE_VERBOSE_MAKEFILE=ON
 
           7z a -t7z -m0=LZMA2 -mmt=on -mx=3 -md=4m -mfb=32 -ms=1g -mqs=on -sccUTF-8 -mtc=on -mta=on -mhe=on `
             onnxruntime_py${{ matrix.python-version }}.7z `
