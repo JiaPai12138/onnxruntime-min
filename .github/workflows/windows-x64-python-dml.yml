@@ -128,7 +128,7 @@ jobs:
             --config Release `
             --build_dir build `
             --skip_submodule_sync `
-            --parallel 0 `
+            --parallel 4 `
             --cmake_generator "Visual Studio 17 2022" `
             --msbuild_extra_options "IncludeMobileTargets=false" `
             --msbuild_extra_options "/v:detailed" `
