@@ -76,6 +76,15 @@ jobs:
             exit 0
           fi
 
+      # - name: Backup
+      #   if: ${{ env.move_on == 'true' }}
+      #   uses: actions/upload-artifact@v6
+      #   with:
+      #     name: backups-${{ matrix.python-version }}
+      #     if-no-files-found: error
+      #     path: |
+      #       onnxruntime/
+
       - name: Setup Python
         if: ${{ env.move_on == 'true' }}
         uses: actions/setup-python@v6
@@ -97,6 +106,13 @@ jobs:
           git fetch origin tag "${{ env.tag_name }}"
           git checkout "${{ env.tag_name }}" -f
 
+      # - name: Download Backup
+      #   if: ${{ env.move_on == 'true' }}
+      #   uses: actions/download-artifact@v7
+      #   with:
+      #     name: backups-${{ matrix.python-version }}
+      #     path: onnxruntime/
+
       - name: Locate vcvarsall
         if: ${{ env.move_on == 'true' }}
         shell: cmd
@@ -112,7 +128,7 @@ jobs:
             --config Release `
             --build_dir build `
             --skip_submodule_sync `
-            --parallel `
+            --parallel 0 `
             --cmake_generator "Visual Studio 17 2022" `
             --msbuild_extra_options "IncludeMobileTargets=false" `
             --msbuild_extra_options "/v:detailed" `
@@ -123,9 +139,12 @@ jobs:
             --skip_tests `
             --disable_contrib_ops `
             --disable_ml_ops `
+            --disable_rtti `
             --use_dml `
             --compile_no_warning_as_error `
             --no_kleidiai `
+            --use_mimalloc `
+            --disable_types "float8 optional sparsetensor" `
             --cmake_extra_defines CMAKE_VERBOSE_MAKEFILE=ON
 
           7z a -t7z -m0=LZMA2 -mmt=on -mx=3 -md=4m -mfb=32 -ms=1g -mqs=on -sccUTF-8 -mtc=on -mta=on -mhe=on `
