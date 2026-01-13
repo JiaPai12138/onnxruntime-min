@@ -145,7 +145,6 @@ jobs:
             --use_mimalloc `
             --disable_types float8 `
             --disable_types optional `
-            --disable_types sparsetensor `
             --cmake_extra_defines CMAKE_VERBOSE_MAKEFILE=ON
 
           7z a -t7z -m0=LZMA2 -mmt=on -mx=3 -md=4m -mfb=32 -ms=1g -mqs=on -sccUTF-8 -mtc=on -mta=on -mhe=on `
