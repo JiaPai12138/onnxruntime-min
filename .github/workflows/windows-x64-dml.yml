@@ -67,7 +67,7 @@ jobs:
           echo "Remote tag: ${{ env.remote_tag }}"
 
           if [ "${{ env.tag_name }}" = "${{ env.remote_tag }}" ]; then
-            echo "move_on=false" >> $GITHUB_ENV
+            echo "move_on=true" >> $GITHUB_ENV
             exit 0
           else
             echo "⚠️ Tags differ! Compiling new version!"
@@ -144,7 +144,7 @@ jobs:
             --cmake_extra_defines CMAKE_VERBOSE_MAKEFILE=ON
 
           7z a -t7z -m0=LZMA2 -mmt=on -mx=3 -md=4m -mfb=32 -ms=1g -mqs=on -sccUTF-8 -mtc=on -mta=on -mhe=on `
-            onnxruntime_py${{ matrix.python-version }}.7z `
+            onnxruntime_dll${{ matrix.python-version }}.7z `
             build\Release\
         env:
           ALLOW_RELEASED_ONNX_OPSET_ONLY: '0'
@@ -156,7 +156,7 @@ jobs:
         with:
           name: onnxruntime-wheel-py${{ matrix.python-version }}
           path: |
-            onnxruntime_py${{ matrix.python-version }}.7z
+            onnxruntime_dll${{ matrix.python-version }}.7z
 
       - name: Create Release
         if: ${{ env.move_on == 'true' }}
