@@ -137,7 +137,6 @@ jobs:
             --skip_tests `
             --disable_contrib_ops `
             --disable_ml_ops `
-            --disable_rtti `
             --use_dml `
             --compile_no_warning_as_error `
             --no_kleidiai `
