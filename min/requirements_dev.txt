@@ -10,7 +10,7 @@ sympy==1.14
 flatbuffers
 psutil
 onnxscript==0.5.3; python_version < "3.14"
-onnxscript~=0.5.7; python_version >= "3.14"
+onnxscript~=0.6.0; python_version >= "3.14"
 onnx-ir==0.1.10; python_version < "3.14"
 onnx-ir~=0.1.14; python_version >= "3.14"
 jinja2
