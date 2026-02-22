@@ -123,6 +123,8 @@ jobs:
         if: ${{ env.move_on == 'true' }}
         shell: pwsh
         run: |
+          attrib -R build\Release\_deps\flatbuffers-src\kotlin\benchmark\src\jvmMain\java\* /S
+          
           mkdir build
           python "${{ github.workspace }}\tools\ci_build\build.py" `
             --config Release `
