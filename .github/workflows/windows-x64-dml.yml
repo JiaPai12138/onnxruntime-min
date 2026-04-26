@@ -123,8 +123,6 @@ jobs:
         if: ${{ env.move_on == 'true' }}
         shell: pwsh
         run: |
-          attrib -R build\Release\_deps\flatbuffers-src\kotlin\benchmark\src\jvmMain\java\* /S
-          
           mkdir build
           python "${{ github.workspace }}\tools\ci_build\build.py" `
             --config Release `
@@ -143,7 +141,7 @@ jobs:
             --compile_no_warning_as_error `
             --no_kleidiai `
             --use_mimalloc `
-            --cmake_extra_defines CMAKE_VERBOSE_MAKEFILE=ON
+            --cmake_extra_defines CMAKE_VERBOSE_MAKEFILE=ON FLATBUFFERS_BUILD_TESTS=OFF FLATBUFFERS_BUILD_BENCHMARKS=OFF `
 
           7z a -t7z -m0=LZMA2 -mmt=on -mx=3 -md=4m -mfb=32 -ms=1g -mqs=on -sccUTF-8 -mtc=on -mta=on -mhe=on `
             onnxruntime_dll${{ matrix.python-version }}.7z `
