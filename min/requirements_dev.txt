@@ -1,5 +1,5 @@
 numpy==2.2.6; python_version < "3.14"
-numpy~=2.4.4; python_version >= "3.14"
+numpy~=2.4.6; python_version >= "3.14"
 mypy
 pytest
 setuptools>=82.0.1
