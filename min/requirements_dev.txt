@@ -5,7 +5,7 @@ pytest
 setuptools>=82.0.1
 wheel
 protobuf==4.25.8; python_version < "3.14"
-protobuf~=7.34.1; python_version >= "3.14"
+protobuf~=7.35.1; python_version >= "3.14"
 sympy==1.14
 flatbuffers
 psutil
